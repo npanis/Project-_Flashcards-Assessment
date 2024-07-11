@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 // Navigation
 
-export const BreadCrumbs = ({path}) => (
+export const BreadCrumbs = ({ paths }) => (
   <nav aria-label="breadcrumb">
     <ol className="breadcrumb">
       <li className="breadcrumb-item">

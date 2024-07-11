@@ -17,27 +17,14 @@ function DeckView() {
       try {
           const deckDataFromAPI = await readDeck(deckId, abortController.signal);
           setDeckData(deckDataFromAPI);
+          setCardList(deckDataFromAPI.cards);
       } catch(error){
           if(error.name === "AbortError"){
               console.log("Aborted failed to load deckData", deckData);
           }else { throw(error) }
       }
     }
-    async function loadCardList(){
-      try {
-        const response = await fetch(
-          `http://localhost:8080/cards?deckId=${deckId}`
-        );
-          const cardList = await response.json();
-          setCardList(cardList);
-      } catch(error){
-          if(error.name === "AbortError"){
-              console.log("Aborted failed to load Cardlist", cardList);
-          }else { throw(error) }
-      }
-    }
     loadDeckData();
-    loadCardList();
     const breadcrumbPathArray = [
       { link: "/", text: "Home"},
       {
@@ -92,12 +79,17 @@ function DeckView() {
         </div>
         <h3>Cards</h3>
         <div>
-          <ul className="list-group" style={{ listStyleType: 'none', padding: 0 }}>
-            {cardList.map((card) => (
-              <li key={card.id}>
-              <Card card={card} />
-              </li>
-            ))}
+          <ul  key={deckId} className="list-group" style={{ listStyleType: 'none', padding: 0 }}>
+            {cardList && cardList.length>0 ?
+             (cardList.map((card) => (
+                <li key={card.id}>
+                <Card card={card} />
+                </li>
+              ))
+             ) :
+             <h1>Loading..</h1>
+            }
+
           </ul> 
         </div>
     </div>   
