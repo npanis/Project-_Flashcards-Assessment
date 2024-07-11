@@ -4,6 +4,7 @@ import { readDeck, deleteDeck } from "../utils/api";
 import { useParams } from "react-router-dom";
 import Card from "../card/Card";
 import { Link } from "react-router-dom";
+import BreadCrumbs from "../common/BreadCrumbs"
 
 function DeckView() {
   //API get response with deckId
@@ -37,6 +38,13 @@ function DeckView() {
     }
     loadDeckData();
     loadCardList();
+    const breadcrumbPathArray = [
+      { link: "/", text: "Home"},
+      {
+        link:`/decks/${deckId}`,
+        text: deckData? deckData.name : "DeckData is empty"
+      }
+    ];
     return () => {
         abortController.abort();
     }
@@ -58,8 +66,8 @@ function DeckView() {
       
     }
   }
-    return(
-      <>
+    return deckData ? (
+      <div>
           <div className="card" style={{ width: '40rem' }}>
           <div className="card-body">
             <h5 className="card-title">{deckData.name}</h5>
@@ -67,12 +75,11 @@ function DeckView() {
             <div className="d-flex mb-3" >
               <div className="p-2">
                 <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary">
-                    <i className="bi bi-eye"></i>Edit
+                    <i className="bi bi-pencil-fill"></i> Edit
                 </Link>
               </div>
-
               <div className="p-2">
-                <button type="button" className="btn btn-primary" onClick={() => <alert>study</alert>}><i className="bi bi-journal-bookmark"></i> Study</button>
+                <Link to={`/decks/${deckId}/study`} className="btn btn-primary"><i className="bi bi-journal-bookmark"></i> Study</Link>
               </div>
               <div className="p-2">
                 <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary"><i className="bi bi-plus"></i> Add Cards</Link>
@@ -84,16 +91,16 @@ function DeckView() {
           </div>
         </div>
         <h3>Cards</h3>
-        <ul className="card-list" style={{ listStyleType: 'none', padding: 0 }}>
-      {cardList.map((card) => (
-        <li key={card.id}>
-          <Card card={card} />
-        </li>
-      ))}
-    </ul>
-      </>
-
-        
-    );
+        <div>
+          <ul className="list-group" style={{ listStyleType: 'none', padding: 0 }}>
+            {cardList.map((card) => (
+              <li key={card.id}>
+              <Card card={card} />
+              </li>
+            ))}
+          </ul> 
+        </div>
+    </div>   
+    ) : ( <h1>Loading...</h1>);
 };
 export default DeckView;

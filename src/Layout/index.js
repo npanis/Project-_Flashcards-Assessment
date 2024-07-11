@@ -7,16 +7,18 @@ import CreateDeck from "../home/CreateDeck";
 import DeckView from "../deck/DeckView";
 import Edit from "../common/Edit";
 import CreateCard from "../card/CreateCard";
+import Study from "../deck/Study";
+import { useLocation } from "react-router-dom";
 
 function Layout() {
+  const { pathname } = useLocation();
   return (
     <>
       <Header />
       <div className="container">
-        {/* TODO: Implement the screen starting here */}
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/decks/:deckId/study" element={<p>Add new study page here</p>}/>
+        <Route path="/decks/:deckId/study" element={<Study />}/>
         <Route path="/decks/new" element={<CreateDeck />}/>
         <Route path="/decks/:deckId" element={<DeckView />}/>
         <Route path="/decks/:deckId/edit" element={<Edit />} />

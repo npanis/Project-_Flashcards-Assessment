@@ -1,26 +1,24 @@
 import React, {useState, useEffect} from "react";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { deleteDeck } from "../utils/api";
+import { deleteDeck, readDeck } from "../utils/api";
 import { Link } from "react-router-dom";
 
 function DeckList({ deckList }) {
-  const [cardCounts, setCardCounts] = useState({});
 
   useEffect(() => {
+    const abortController = new AbortController()
     async function countCards(deckId) {
-      const response = await fetch(
-        `http://localhost:8080/cards?deckId=${deckId}`
-      );
-      const cardListFromAPI = await response.json();
-      const deckSize = cardListFromAPI ? cardListFromAPI.length : 0;
-      setCardCounts((prevCounts) => ({ ...prevCounts, [deckId]: deckSize }));
+      const cardListFromAPI = await readDeck(deckId, abortController.signal);
+      if (cardListFromAPI){
+        const deckSize = cardListFromAPI.length;
+      }
+  
     }
 
     deckList.forEach((deck) => {
       countCards(deck.id);
     });
   }, [deckList]);
-  
   const handleConfirmAction = async (deckId) => {
     const confirmed = window.confirm(
       'Delete this deck?\n\n You will not be able to recover it.'
@@ -55,8 +53,8 @@ function DeckList({ deckList }) {
         <li key={deck.id}>
         <div className="card" style={{ width: '40rem' }}>
           <div className="card-body">
-            <h5 className="card-title">{deck.name}</h5>
-            <p >{cardCounts[deck.id] || 0} cards</p>
+            <h3 className="card-title">{deck.name}</h3>
+            <div>{deck.cards.length} cards</div>
             <p className="card-text">{deck.description}</p>
             <div className="d-flex mb-3" >
               <div className="p-2">
@@ -65,7 +63,9 @@ function DeckList({ deckList }) {
               </Link>
               </div>
               <div className="p-2">
-                <button type="button" className="btn btn-primary" onClick={() => <alert>study</alert>}><i className="bi bi-journal-bookmark"></i> Study</button>
+                <Link to={`/decks/${deck.id}/study`} className="btn btn-primary">
+                <i className="bi bi-journal-bookmark"></i> Study
+              </Link>
               </div>
               <div className="ms-auto p-2">
                 <button type="button" className="btn btn-danger" onClick={() => handleConfirmAction(deck.id)}><i className="bi bi-trash3"></i></button>

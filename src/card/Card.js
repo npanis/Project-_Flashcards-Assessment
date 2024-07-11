@@ -21,6 +21,7 @@ function Card({card}){
         }
       }
     return(
+
         <div className="card mb-3">
             <div className="row g-0">
                 <div className="col-md-5">
@@ -29,21 +30,28 @@ function Card({card}){
                 </div>
                 </div>
                 <div className="col-md-5">
-                <div className="card-body">
+                <div className="card-body d-flex flex-column">
                     <p className="card-text">{card.back}</p>
-                    <div className="d-flex mb-3" >
-                        <div className="p-2">
-                            <Link to={`/decks/${card.deckId}/cards/${card.id}/edit`} className="btn btn-secondary"><i className="bi bi-pencil-fill"></i> Edit</Link>
-                        </div>
-                        <div className="ms-auto p-2">
-                            <button type="button" className="btn btn-danger" onClick={() => handleConfirmAction(card.id)}><i className="bi bi-trash3"></i></button>
-                        </div>
-                   </div>
-
+                    <div className="mt-auto">
+                    <Link
+                        to={`/decks/${card.deckId}/cards/${card.id}/edit`}
+                        className="btn btn-secondary me-2"
+                    >
+                        <i className="bi bi-pencil-fill"></i> Edit
+                    </Link>
+                    <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={() => handleConfirmAction(card.id)}
+                    >
+                        <i className="bi bi-trash3"></i>
+                    </button>
                     </div>
                 </div>
+                </div>
             </div>
-            </div>
+        </div>
+    
     );
 }
 

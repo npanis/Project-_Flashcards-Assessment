@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useLocation } from "react";
 import { updateDeck, readDeck, updateCard, readCard} from "../utils/api";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import CardForm  from "../common/CardForm";
 
 
 // Reusing this common component to use for both deck or Card
@@ -133,38 +134,18 @@ function EditCard({deckId,cardId}) {
     }, [deckId, cardId]); 
 
     return (
-        <form onSubmit={handleSubmit} >
-              <h2>Edit Card </h2>
-              <div className="form-floating mb-3">
-                 <label htmlFor="front" className="form-label">Front</label>
-                 <textarea 
-                    className="form-control"
-                    type="textarea" 
-                    id="front"
-                    name="front" 
-                    value={cardData.front}
-                    onChange={handleChange}
-                 />
-                <label htmlFor="back" className="form-label">Back</label>
-                 <textarea 
-                    className="form-control"
-                    type="textarea" 
-                    id="back"
-                    name="back" 
-                    value={cardData.back}
-                    onChange={handleChange}
-                 />
-            </div>
-            <div className="d-flex mb-3">
-               <div className="me-auto p-2">
-                <Link to={`/decks/${deckId}`} className="btn btn-secondary">Cancel</Link>
-                </div> 
-                <div className="p-2">
-                    <button type="submit" className="btn btn-primary">Submit</button> 
-                </div>
-            </div>
-    
-        </form>
+    <div>
+      <h2>Edit Card </h2>  
+      <CardForm 
+        deckId = {deckId}
+        cardData={cardData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        cancelButtonText="Cancel"
+        submitButtonText="Submit"
+      />
+    </div>
+
     );   
 
 }

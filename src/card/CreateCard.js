@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { createCard, readDeck } from "../utils/api";
+import CardForm  from "../common/CardForm";
 
 function CreateCard() {
     // Get necessary data for Card
@@ -51,42 +52,22 @@ function CreateCard() {
     }, [deckId]); 
 
     return (
-        <form onSubmit={handleSubmit} >
-                {deckTitle && (
-                <h2>{deckTitle.name}: Add Card</h2>
+        <div>
+         {deckTitle && (
+            <div>
+                <h2>{deckTitle.name}</h2>
+                <p>Add Card</p>
+            </div>
                 )}
-              <div className="form-floating mb-3">
-                 <label htmlFor="front" className="form-label">Front</label>
-                 <textarea 
-                    className="form-control"
-                    type="textarea" 
-                    id="front"
-                    name="front" 
-                    placeholder="Front side of the card"
-                    value={cardData.front}
-                    onChange={handleChange}
-                 />
-                <label htmlFor="back" className="form-label">Back</label>
-                 <textarea 
-                    className="form-control"
-                    type="textarea" 
-                    id="back"
-                    name="back" 
-                    placeholder="Back side of the card"
-                    value={cardData.back}
-                    onChange={handleChange}
-                 />
-            </div>
-            <div className="d-flex mb-3">
-               <div className="me-auto p-2">
-                <Link to={`/decks/${deckId}`} className="btn btn-secondary">Done</Link>
-                </div> 
-                <div className="p-2">
-                    <button type="submit" className="btn btn-primary">Save</button> 
-                </div>
-            </div>
-    
-        </form>
+            <CardForm 
+              deckId = {deckId}
+              cardData={cardData}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              cancelButtonText="Done"
+              submitButtonText="Save"
+            /> 
+        </div>  
     );   
 
 }
