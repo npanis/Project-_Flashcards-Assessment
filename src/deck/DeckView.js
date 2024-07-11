@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { readDeck, deleteDeck } from "../utils/api";
 import { useParams } from "react-router-dom";
-import Card from "../card/Card"
+import Card from "../card/Card";
+import { Link } from "react-router-dom";
 
 function DeckView() {
   //API get response with deckId
@@ -65,13 +66,16 @@ function DeckView() {
             <p className="card-text">{deckData.description}</p>
             <div className="d-flex mb-3" >
               <div className="p-2">
-                <button type="button" className="btn btn-secondary" onClick={() =>    <alert>view</alert>}><i className="bi bi-pencil-fill"></i> Edit</button>
+                <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary">
+                    <i className="bi bi-eye"></i>Edit
+                </Link>
               </div>
+
               <div className="p-2">
                 <button type="button" className="btn btn-primary" onClick={() => <alert>study</alert>}><i className="bi bi-journal-bookmark"></i> Study</button>
               </div>
               <div className="p-2">
-                <button type="button" className="btn btn-primary" onClick={() => <alert>study</alert>}><i className="bi bi-plus"></i> Add Cards</button>
+                <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary"><i className="bi bi-plus"></i> Add Cards</Link>
               </div>
               <div className="ms-auto p-2">
                 <button type="button" className="btn btn-danger" onClick={() => handleConfirmAction(deckData.id)}><i className="bi bi-trash3"></i></button>

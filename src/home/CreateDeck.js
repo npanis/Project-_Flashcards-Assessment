@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createDeck } from "../utils/api";
 
 function CreateDeck () {
@@ -9,6 +9,7 @@ function CreateDeck () {
     }
     // Add the required submit and change handlers
     const [formData, setFormData] = useState({...initialFormState});
+    const navigate = useNavigate();
     const handleChange = ({ target }) => {
         setFormData({
             ...formData,
@@ -23,9 +24,8 @@ function CreateDeck () {
         try{
             const response = await createDeck(formData, abortController.signal);
             console.log(response);
-            // TODO: Form Contents cleared
             setFormData({...initialFormState});
-            // TODO: Go to Deck Screen
+            navigate(`/decks/${response.id}`);
         } catch (error) {
             console.error('Error submitting form:', error);
         }
@@ -34,6 +34,7 @@ function CreateDeck () {
 
     return (
         <form onSubmit={handleSubmit} >
+            <h2>Create Deck</h2>
               <div className="form-floating mb-3">
                  <label htmlFor="name" className="form-label">Deck Name</label>
                  <input 

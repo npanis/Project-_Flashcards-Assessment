@@ -60,7 +60,7 @@ function DeckList({ deckList }) {
             <p className="card-text">{deck.description}</p>
             <div className="d-flex mb-3" >
               <div className="p-2">
-              <Link to={`/decks/${deck.id}`} className="btn btn-secondary btn-lg">
+              <Link to={`/decks/${deck.id}`} className="btn btn-secondary">
                   <i className="bi bi-eye"></i>View
               </Link>
               </div>

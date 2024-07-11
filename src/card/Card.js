@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { deleteCard } from "../utils/api";
+import { Link } from "react-router-dom";
 
 function Card({card}){
     const handleConfirmAction = async (cardId) => {
@@ -32,7 +33,7 @@ function Card({card}){
                     <p className="card-text">{card.back}</p>
                     <div className="d-flex mb-3" >
                         <div className="p-2">
-                            <button type="button" className="btn btn-secondary" onClick={() =>    <alert>view</alert>}><i className="bi bi-pencil-fill"></i> Edit</button>
+                            <Link to={`/decks/${card.deckId}/cards/${card.id}/edit`} className="btn btn-secondary"><i className="bi bi-pencil-fill"></i> Edit</Link>
                         </div>
                         <div className="ms-auto p-2">
                             <button type="button" className="btn btn-danger" onClick={() => handleConfirmAction(card.id)}><i className="bi bi-trash3"></i></button>
