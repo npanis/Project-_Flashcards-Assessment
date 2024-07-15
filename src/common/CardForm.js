@@ -12,6 +12,7 @@ function CardForm({ deckId, cardData, handleChange, handleSubmit, cancelButtonTe
                 type="textarea" 
                 id="front"
                 name="front" 
+                placeholder="Front side of card"
                 value={cardData.front}
                 onChange={handleChange}
             />
@@ -21,6 +22,7 @@ function CardForm({ deckId, cardData, handleChange, handleSubmit, cancelButtonTe
                 type="textarea" 
                 id="back"
                 name="back" 
+                placeholder="Back side of card"
                 value={cardData.back}
                 onChange={handleChange}
             />

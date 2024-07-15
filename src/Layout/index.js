@@ -8,14 +8,18 @@ import DeckView from "../deck/DeckView";
 import Edit from "../common/Edit";
 import CreateCard from "../card/CreateCard";
 import Study from "../deck/Study";
-import { useLocation } from "react-router-dom";
+import { useLocation  } from "react-router-dom";
+import BreadCrumbs from "../common/BreadCrumbs";
 
 function Layout() {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const pathname = location.pathname;
+
   return (
     <>
       <Header />
       <div className="container">
+        {pathname !== '/' && <BreadCrumbs />}
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/decks/:deckId/study" element={<Study />}/>

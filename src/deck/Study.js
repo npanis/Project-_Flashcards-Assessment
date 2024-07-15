@@ -11,7 +11,7 @@ function Study(){
     const [isFlip, setIsFlip] = useState(false);
     const [cardIndex, setCardIndex] = useState(0);
     const { deckId } = useParams();
-
+    
  //Get deckData and Card Info
     useEffect(()=> {
         const abortController = new AbortController();
@@ -51,7 +51,7 @@ function Study(){
     return (
 
     <div>
-        <h1>{deck.name}</h1>
+        <h1>{deck.name}: Study</h1>
         {deckSize <= 2 ? (
         <Fragment>
           <div className="card">

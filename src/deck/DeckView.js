@@ -4,13 +4,13 @@ import { readDeck, deleteDeck } from "../utils/api";
 import { useParams } from "react-router-dom";
 import Card from "../card/Card";
 import { Link } from "react-router-dom";
-import BreadCrumbs from "../common/BreadCrumbs"
 
 function DeckView() {
   //API get response with deckId
   const [deckData, setDeckData] = useState([]);
   const [cardList, setCardList] = useState([]);
   const { deckId } = useParams();
+  
   useEffect(() => {
     const abortController = new AbortController();
     async function loadDeckData(){
@@ -25,16 +25,11 @@ function DeckView() {
       }
     }
     loadDeckData();
-    const breadcrumbPathArray = [
-      { link: "/", text: "Home"},
-      {
-        link:`/decks/${deckId}`,
-        text: deckData? deckData.name : "DeckData is empty"
-      }
-    ];
+    
     return () => {
         abortController.abort();
     }
+
   }, [deckId]);
   const handleConfirmAction = async (deckId) => {
     const confirmed = window.confirm(
