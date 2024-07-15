@@ -11,7 +11,7 @@ The app will allow a user to:
 
 ### Dependencies
 
-N/A
+import 'bootstrap-icons/font/bootstrap-icons.css'; -  Is having issues with qualified. I am using this feature for icon rendering on buttons ( edit, home link, trash, add )
 
 
 ## Help
