@@ -11,6 +11,7 @@ import CardForm  from "../common/CardForm";
 function EditDeck({ deckId }){
     // Get data and fill in as current fills
     const [deckData, setDeckData] = useState({ name: "", description: "" });
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
  //load Data
@@ -26,7 +27,7 @@ function EditDeck({ deckId }){
         const abortController = new AbortController();
         try{
             const response = await updateDeck(deckData, abortController.signal);
-            setDeckData(deckData);
+            setDeckData(response);
             navigate(`/decks/${deckId}`);
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -39,6 +40,7 @@ function EditDeck({ deckId }){
             try {
                 const deckDataFromAPI = await readDeck(deckId, abortController.signal);
                 setDeckData(deckDataFromAPI);
+                setIsLoading(false);
             }catch(error) {
                 if(error.name === "AbortError"){
                     console.log("Aborted failed to load deckData", deckData);
@@ -50,6 +52,10 @@ function EditDeck({ deckId }){
             abortController.abort(); 
         }
     },[deckId]);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
  return (
     <form onSubmit={handleSubmit} >
@@ -90,6 +96,7 @@ function EditDeck({ deckId }){
 function EditCard({deckId,cardId}) {
     // Get necessary data for Card
     const [cardData, setCardData] = useState({front: "", back:""});
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     //load Data
     const handleChange = ({ target }) => {
@@ -118,6 +125,7 @@ function EditCard({deckId,cardId}) {
             try {
                 const cardDataFromAPI = await readCard(cardId, abortController.signal);
                 setCardData(cardDataFromAPI);
+                setIsLoading(false);
             } catch (error) {
                 if (error.name === "AbortError") {
                     console.log("Aborted: failed to load cardData");
@@ -132,6 +140,10 @@ function EditCard({deckId,cardId}) {
             abortController.abort(); // Cleanup function
         };
     }, [deckId, cardId]); 
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
     <div>

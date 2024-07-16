@@ -2,132 +2,52 @@
   "decks": [
     {
       "id": 1,
-      "name": "wefwfwRendering in React Update 23234",
-      "description": "React's codasdmponent structure allows for quickly building a complex web application that relies on DOM manipulation. "
+      "name": "Rendering in React",
+      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
     },
     {
-      "name": "React Routerdfwf",
+      "name": "React Router test 1",
       "description": "React Router is a collection of navigational components that compose declaratively with your application.",
       "id": 2
-    },
-    {
-      "name": "use Hooks",
-      "description": "Study the different usage of hooks and how you can use them",
-      "id": 3
-    },
-    {
-      "name": "Deck 04",
-      "description": "About Deck 04",
-      "id": 4
-    },
-    {
-      "name": "React Codesfwef",
-      "description": "Need to memorize syntax as this is my crutch",
-      "id": 5
     }
   ],
   "cards": [
     {
-      "front": "Test1?",
-      "back": "Yes1",
-      "deckId": 3,
-      "id": 1
+      "id": 1,
+      "front": "Differentiate between Real DOM and Virtual DOM.",
+      "back": "Virtual DOM updates are faster but do not directly update the HTML",
+      "deckId": 1
     },
     {
-      "front": "Test4",
-      "back": "Yes4",
-      "deckId": 3,
+      "id": 2,
+      "front": "How do you modify the state of a different React component?",
+      "back": "Not at all! State is visible to the component only.",
+      "deckId": 1
+    },
+    {
+      "id": 3,
+      "front": "How do you pass data 'down' to a React child component?",
+      "back": "As properties or props",
+      "deckId": 1
+    },
+    {
+      "front": "What path will match the follow Route?\n<Route>\n  <NotFound />\n</Route>",
+      "back": "All paths. A route with no path matches all URL's",
+      "deckId": 2,
       "id": 4
     },
     {
-      "front": "What is my name?",
-      "back": "Secret",
-      "deckId": 4,
+      "front": "What does <Switch> do?",
+      "back": "Renders the first matching child <Route> ",
+      "deckId": 2,
       "id": 5
     },
     {
-      "front": "4+4=?",
-      "back": "8",
-      "deckId": 4,
-      "id": 6
-    },
-    {
-      "front": "Test me 1+1?",
-      "back": "2",
-      "deckId": 3,
+      "cards": [],
+      "front": "b",
+      "back": "b",
+      "deckId": 1,
       "id": 7
-    },
-    {
-      "front": "What is my age?",
-      "back": "56",
-      "deckId": 3,
-      "id": 8
-    },
-    {
-      "front": "Is the assessment passing?Update new form?",
-      "back": "No testing new fewfwefform",
-      "deckId": 1,
-      "id": 9
-    },
-    {
-      "front": "All functions are working? I hope so what do you thinK?",
-      "back": "Same old? No",
-      "deckId": 1,
-      "id": 10
-    },
-    {
-      "front": "Are forms already moved how fast?",
-      "back": "No still no",
-      "deckId": 1,
-      "id": 11
-    },
-    {
-      "front": "Worked on passing the form?",
-      "back": "Yes",
-      "deckId": 1,
-      "id": 12
-    },
-    {
-      "front": "Testing is ok?",
-      "back": "Not yet we need to check",
-      "deckId": 2,
-      "id": 13
-    },
-    {
-      "front": "Conditional Rendering",
-      "back": "{postId === post.id && (\n  ...\n)}",
-      "deckId": 5,
-      "id": 15
-    },
-    {
-      "front": " Comments List",
-      "back": "<ul className=\"comment-list\">\n  ...\n</ul>",
-      "deckId": 5,
-      "id": 16
-    },
-    {
-      "front": "Function Components",
-      "back": "function ComponentName(props) {\n  return <div>{props.someProp}</div>;\n}",
-      "deckId": 5,
-      "id": 17
-    },
-    {
-      "front": "Class Components",
-      "back": "class ComponentName extends React.Component {\n  render() {\n    return <div>{this.props.someProp}</div>;\n  }\n}",
-      "deckId": 5,
-      "id": 18
-    },
-    {
-      "front": "State and Hooks (Function Components)",
-      "back": "import React, { useState, useEffect } from 'react';\n\nfunction ComponentName() {\n  const [state, setState] = useState(initialState);\n\n  useEffect(() => {\n    // Side effect logic\n    return () => {\n      // Cleanup\n    };\n  }, [dependencies]); // Only re-run if dependencies change\n\n  return <div>{state}</div>;\n}",
-      "deckId": 5,
-      "id": 19
-    },
-    {
-      "front": "Event Handling",
-      "back": "function handleClick() {\n  // Handle click event\n}\n\nreturn <button onClick={handleClick}>Click me</button>;\n\nor <button onClick={()=>SetnanaUp(pro)}>Clickme</button>",
-      "deckId": 5,
-      "id": 20
     }
   ]
 }
