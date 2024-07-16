@@ -15,9 +15,21 @@ import { readDeck} from "../utils/api";
 
 function BreadCrumbs () {
   const location = useLocation();
-  // Cannot get deckId and cardId from useParams. 
-  const deckId = location.pathname.match(/\/decks\/(\d+)/)?.[1] ?? 0;
-  const cardId = location.pathname.match(/\/decks\/\d+\/cards\/(\d+)/)?.[1] ?? 0;
+ // Cannot get deckId and cardId from useParams. 
+  let deckId = 0;
+  let cardId = 0;
+
+  // Check for deckId
+  const deckIdMatch = location.pathname.match(/\/decks\/(\d+)/);
+  if (deckIdMatch) {
+    deckId = deckIdMatch[1];
+  }
+
+  // Check for cardId
+  const cardIdMatch = location.pathname.match(/\/decks\/\d+\/cards\/(\d+)/);
+  if (cardIdMatch) {
+    cardId = cardIdMatch[1];
+  }
   const [deckData, setDeckData ] = useState([]);
   
   // Get deckData if deckId is present

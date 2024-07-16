@@ -8,7 +8,7 @@ import CardForm  from "../common/CardForm";
 // Reusing this common component to use for both deck or Card
 //Get the deckId and cardId if cardId is null but deckId is present create a different page
 
-function EditDeck({deckId}){
+function EditDeck({ deckId }){
     // Get data and fill in as current fills
     const [deckData, setDeckData] = useState({ name: "", description: "" });
     const navigate = useNavigate();
@@ -49,7 +49,7 @@ function EditDeck({deckId}){
         return () => {
             abortController.abort(); 
         }
-    },[]);
+    },[deckId]);
 
  return (
     <form onSubmit={handleSubmit} >
